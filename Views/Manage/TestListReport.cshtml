@@ -1,0 +1,101 @@
+﻿@{
+    ViewBag.Title = "آزمون افسردگی،اضطراب، استرس";
+}
+
+<style type="text/css">
+    body {
+        direction: rtl;
+    }
+
+    h2 {
+        text-align: center;
+    }
+
+    td {
+        vertical-align: top;
+        border-style: ridge;
+        font-size: medium;
+        border-color: ActiveBorder;
+        border-width: thin;
+        min-width: 130px;
+    }
+
+    table {
+        text-align: center;
+        margin: 20px;
+    }
+
+    p {
+        font-size: medium;
+    }
+</style>
+
+<h2>@ViewBag.Title</h2><br>
+<p>
+    وضعيت دانش آموزان كه در تست شركت نموده اند به ترتيب شماره دانش آموزي بصورت زير است.
+</p>
+@model List<test1.Models.DASSResultModel>
+@Html.AntiForgeryToken()
+
+<center>
+    <table>
+        <tr>
+            <td>نام</td>
+            <td>نام خانوادگي</td>
+            <td>شماره دانش آموزي</td>
+            <td>تاريخ تست</td>
+            <td>ساعت شروع</td>
+            <td>ساعت پايان</td>
+            <td>وضعيت افسردگي</td>
+            <td>وضعيت نگراني</td>
+            <td>وضعيت استرس</td>
+            <td></td>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @item.LastName
+                </td>
+                <td>
+                    @item.ID
+                </td>
+                <td>
+                    @item.TestDate
+                </td>
+                <td>
+                    @item.StartTime
+                </td>
+                <td>
+                    @item.EndTime
+                </td>
+                <td>
+                    @if (@item.DepStatus == 0) { Html.Raw("عادی"); }
+                    else if (@item.DepStatus == 1) { Html.Raw("خفیف"); }
+                    else if (@item.DepStatus == 2) { Html.Raw("متوسط"); }
+                    else if (@item.DepStatus == 3) { Html.Raw("شدید"); }
+                    else if (@item.DepStatus == 4) { Html.Raw("بسیار شدید"); }
+                </td>
+                <td>
+                    @if (@item.AnxStatus == 0) { Html.Raw("عادی"); }
+                    else if (@item.AnxStatus == 1) { Html.Raw("خفیف"); }
+                    else if (@item.AnxStatus == 2) { Html.Raw("متوسط"); }
+                    else if (@item.AnxStatus == 3) { Html.Raw("شدید"); }
+                    else if (@item.AnxStatus == 4) { Html.Raw("بسیار شدید"); }
+                </td>
+                <td>
+                    @if (@item.StressStatus == 0) { Html.Raw("عادی"); }
+                    else if (@item.StressStatus == 1) { Html.Raw("خفیف"); }
+                    else if (@item.StressStatus == 2) { Html.Raw("متوسط"); }
+                    else if (@item.StressStatus == 3) { Html.Raw("شدید"); }
+                    else if (@item.StressStatus == 4) { Html.Raw("بسیار شدید"); }
+                </td>
+            </tr>
+        }
+    </table>
+</center>
+<br />
+}

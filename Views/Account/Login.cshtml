@@ -1,0 +1,52 @@
+﻿@using test1.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "ورود به حساب کاربری";
+}
+
+<h2>@ViewBag.Title</h2>
+<div class="row">
+    <div class="col-md-8">
+        <section id="loginForm">
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <br>
+    <h4>لطفا حساب کاربری خود را وارد نمایید. حساب کاربری و رمز عبور شما برابر کد ملی شما بدون وارد نمودن صفرهای ابتدای آن است</h4>
+    <h4>به منظور عدم دسترسی سایرین به نتایج تست شما، خواهشمند است پس از اتمام کار از طریق گذینه خروج از حساب کاربری خود خارج شوید.</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">                 
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                    </div>
+                    @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
+                </div>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    </div>
+                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                </div>
+                <div class="form-group">
+                    <div class="col-md-10">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="ورود" class="btn btn-default" />
+                    </div>
+                </div>
+            }
+        </section>
+    </div>
+</div>
+<br/>
+<footer>
+    طراحی و نگهداری شرکت ابزار دانش غرب @DateTime.Now.Year &copy;
+</footer>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

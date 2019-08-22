@@ -1,0 +1,171 @@
+﻿﻿
+<style type="text/css">
+    body {
+        direction: rtl;
+    }
+
+    h2 {
+        text-align: center;
+    }
+
+    td, th {
+        vertical-align: top;
+        border-style: ridge;
+        font-size: medium;
+        border-color: ActiveBorder;
+        border-width: thin;
+        min-width: 130px;
+    }
+
+    table {
+        text-align: right;
+        margin: 20px;
+    }
+
+    p {
+        font-size: medium;
+    }
+</style>
+
+@{
+    ViewBag.Title = "نتيجه آزمون";
+}
+
+<h2>@ViewBag.Title</h2>
+<h3>@ViewBag.Message</h3>
+
+<br />
+@model test1.Models.DASSResultModel
+@if (Model.Name == null)
+{
+    <p>
+        با سلام.<br>
+        متاسفانه برای شما نمره ای در سیستم درج نشده است.
+    </p>
+}
+else
+{
+    <p>
+        دانش اموز محترم آقای
+        @Model.Name @Model.LastName
+        <br><br>
+        سلام
+        <br>
+        با تشکر از شما به دلیل مشارکت و تکمیل این آزمون روانشناختی  به اطلاع می رساند بر اساس نتایج به دست آمده از اجرای این آزمون شما :
+        <br>
+    </p><p>
+        در بحث افسردگی نمره
+        @Model.DepResult
+        را گرفته اید که با توجه به جدول زیر جزء افراد با افسردگی
+        @if (Model.DepStatus == 0)
+        { @Html.Raw("   عادی   ");
+        }
+        else if (Model.DepStatus == 1)
+        { @Html.Raw("   خفیف   ");
+        }
+        else if (Model.DepStatus == 2)
+        { @Html.Raw("   متوسط   ");
+        }
+        else if (Model.DepStatus == 3)
+        { @Html.Raw("   شدید   ");
+        }
+        else
+        { @Html.Raw("   بسیار شدید   ");
+        }
+        محسوب می شوید.
+    </p>
+    <p>
+        در بحث اضطراب نمره
+        @Model.AnxResult
+        را گرفته اید که با توجه به جدول زیر جزء افراد با اضطراب
+        @if (Model.AnxStatus == 0)
+        { @Html.Raw("   عادی   ");
+        }
+        else if (Model.AnxStatus == 1)
+        { @Html.Raw("   خفیف   ");
+        }
+        else if (Model.AnxStatus == 2)
+        { @Html.Raw("   متوسط   ");
+        }
+        else if (Model.AnxStatus == 3)
+        { @Html.Raw("   شدید   ");
+        }
+        else
+        { @Html.Raw("   بسیار شدید   ");
+        }
+        محسوب می شوید.
+    </p>
+    <p>
+        در بحث استرس نمره
+        @Model.StressResult
+        را گرفته اید که با توجه به جدول زیر جزء افراد با استرس
+        @if (Model.StressStatus == 0)
+        { @Html.Raw("   عادی   ");
+        }
+        else if (Model.StressStatus == 1)
+        { @Html.Raw("   خفیف   ");
+        }
+        else if (Model.StressStatus == 2)
+        { @Html.Raw("   متوسط   ");
+        }
+        else if (Model.StressStatus == 3)
+        { @Html.Raw("   شدید   ");
+        }
+        else
+        { @Html.Raw("   بسیار شدید   ");
+        }
+        محسوب می شوید.
+    </p>
+    <p>
+        بر این اساس پیشنهاد می شود برای بررسی و همفکری در مورد هر یک از سه موضوع افسردگی یا اضطراب یا استرس مطرح شده در آزمون که نتیجه ی آن متوسط و بالاتر از آن باشد با هماهنگی قبلی به اتاق مشاوره روانشناختی مدرسه مراجعه فرمایید.
+        <br><br>
+        موفق باشید.
+    </p>
+    <br>
+    <center>
+        <table>
+            <tr>
+                <td>شدت      </td>
+                <td>افسردگی        </td>
+                <td>اضطراب        </td>
+                <td>استرس        </td>
+            </tr>
+            <tr>
+                <td>عادی      </td>
+                <td>0-9        </td>
+                <td>0-7        </td>
+                <td>0-14        </td>
+            </tr>
+            <tr>
+                <td>خفیف      </td>
+                <td>10-13        </td>
+                <td>8-9        </td>
+                <td>15-18        </td>
+            </tr>
+            <tr>
+                <td>متوسط      </td>
+                <td>14-20        </td>
+                <td>10-14        </td>
+                <td>19-25        </td>
+            </tr>
+            <tr>
+                <td>شدید      </td>
+                <td>21-27        </td>
+                <td>15-19        </td>
+                <td>26-33        </td>
+            </tr>
+            <tr>
+                <td>بسیار شدید      </td>
+                <td>+28        </td>
+                <td>+20        </td>
+                <td>+34        </td>
+            </tr>
+        </table>
+    </center>
+}<br>
+<footer>
+    طراحی و نگهداری شرکت ابزار دانش غرب @DateTime.Now.Year &copy;
+</footer>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

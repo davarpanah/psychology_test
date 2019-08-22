@@ -1,0 +1,69 @@
+﻿<style>
+    td a img{width:120px; height:  80px;}
+</style>
+
+@model test1.Models.IndexViewModel
+@{
+    ViewBag.Title = "مدیریت";
+}
+
+<h2>@ViewBag.Title</h2>
+<br/>
+<p class="text-success">@ViewBag.StatusMessage</p>
+<center>
+    <table>
+        <tr>
+            <td>
+                <div>
+                    @if (Model.HasPassword)
+                    {
+                        <p><a class="btn btn-default" href="~/Manage/ChangePassword" title="تغییر رمز عبور"><img src="~/Content/images/ChangePassword.jpg"></a></p>
+                    }
+                    else
+                    {
+                        <p><a class="btn btn-default" href="~/Manage/SetPassword" title="تولید رمز عبور"><img src="~/Content/images/NewPassword.jpg"></a></p>
+                    }      
+                </div>
+            </td>
+             <td>
+                <div>
+                    <p><a class="btn btn-default" href="~/Manage/ChangePersonalInformation" title="اصلاح اطلاعات فردی"><img src="~/Content/images/UpdateInformation.jpg"></a></p>
+                </div>
+            </td>
+            <td>
+                <div>
+                    <p><a class="btn btn-default" href="~/Manage/MyOnlinePayments" title="نمره من"><img src="~/Content/images/MyOnlineHelps.jpg"></a></p>
+                </div>
+            </td>
+            <td>
+                <div>
+                    <p><a class="btn btn-default" href="~/Manage/MyPeriodicPayments" title="ليست نمرات"><img src="~/Content/images/MyPeriodics.jpg"></a></p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div>
+                    @if (Model.GroupType == 3)//Manager
+                    {
+                        <p><a class="btn btn-default" href="~/Manage/UserActivation" title="فعال/غیر فعال سازی کاربران"><img src="~/Content/images/UserActivation.jpg"></a></p>
+                    }
+                </div>
+            </td>
+            <td>
+                <div>
+                 </div>
+            </td>
+            <td>
+                <div>
+                  </div>
+            </td>
+            <td>
+                <div>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <hr>
+    <br />
+</center>

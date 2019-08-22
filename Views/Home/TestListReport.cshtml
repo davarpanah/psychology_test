@@ -1,0 +1,179 @@
+﻿@{
+    ViewBag.Title = "آزمون افسردگی،اضطراب، استرس";
+}
+
+<style type="text/css">
+    body {
+        direction: rtl;
+    }
+
+    h2 {
+        text-align: center;
+    }
+
+    td {
+        vertical-align: top;
+        border-style: ridge;
+        font-size: medium;
+        border-color: ActiveBorder;
+        border-width: thin;
+        min-width: 110px;
+    }
+
+    table {
+        text-align: center;
+        margin: 20px;
+    }
+
+    p {
+        font-size: medium;
+    }
+</style>
+
+<h2>@ViewBag.Title</h2><br>
+<p>
+    وضعيت دانش آموزان كه در تست شركت نموده اند به ترتيب شماره دانش آموزي بصورت زير است.
+</p>
+@model List<test1.Models.DASSResultModel>
+@Html.AntiForgeryToken()
+
+<center>
+    <table>
+        <tr>
+            <td>نام</td>
+            <td>نام خانوادگي</td>
+            <td>کلاس</td>
+            <td>کد ملی</td>
+            <td>تاريخ تست</td>
+            <td>ساعت شروع</td>
+            <td>ساعت پايان</td>
+            <td>افسردگي</td>
+            <td>نگراني</td>
+            <td>استرس</td>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @item.LastName
+                </td>
+                <td>
+                    @item.ClassNo
+                </td>
+                <td>
+                    @item.ID
+                </td>
+                <td>
+                    @item.TestDate
+                </td>
+                <td>
+                    @item.StartTime
+                </td>
+                <td>
+                    @item.EndTime
+                </td>
+                <td>
+                    @item.DepResult -
+                    @if (item.DepStatus == 0)
+                    { @Html.Raw("عادی");
+                    }
+                    else if (item.DepStatus == 1)
+                    { @Html.Raw("خفیف");
+                    }
+                    else if (item.DepStatus == 2)
+                    { @Html.Raw("متوسط");
+                    }
+                    else if (item.DepStatus == 3)
+                    { @Html.Raw("شدید");
+                    }
+                    else if (item.DepStatus == 4)
+                    { @Html.Raw("بسیار شدید");
+                    }
+                </td>
+                <td>
+                    @item.AnxResult -
+                    @if (item.AnxStatus == 0)
+                    { @Html.Raw("عادی");
+                    }
+                    else if (item.AnxStatus == 1)
+                    { @Html.Raw("خفیف");
+                    }
+                    else if (item.AnxStatus == 2)
+                    { @Html.Raw("متوسط");
+                    }
+                    else if (item.AnxStatus == 3)
+                    { @Html.Raw("شدید");
+                    }
+                    else if (item.AnxStatus == 4)
+                    { @Html.Raw("بسیار شدید");
+                    }
+                </td>
+                <td>
+                    @item.StressResult -
+                    @if (item.StressStatus == 0)
+                    { @Html.Raw("عادی");
+                    }
+                    else if (item.StressStatus == 1)
+                    { @Html.Raw("خفیف");
+                    }
+                    else if (item.StressStatus == 2)
+                    { @Html.Raw("متوسط");
+                    }
+                    else if (item.StressStatus == 3)
+                    { @Html.Raw("شدید");
+                    }
+                    else if (item.StressStatus == 4)
+                    { @Html.Raw("بسیار شدید");
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+    <br>
+    <br>
+    <table>
+        <tr>
+            <td>شدت      </td>
+            <td>افسردگی        </td>
+            <td>اضطراب        </td>
+            <td>استرس        </td>
+        </tr>
+        <tr>
+            <td>عادی      </td>
+            <td>0-9        </td>
+            <td>0-7        </td>
+            <td>0-14        </td>
+        </tr>
+        <tr>
+            <td>خفیف      </td>
+            <td>10-13        </td>
+            <td>8-9        </td>
+            <td>15-18        </td>
+        </tr>
+        <tr>
+            <td>متوسط      </td>
+            <td>14-20        </td>
+            <td>10-14        </td>
+            <td>19-25        </td>
+        </tr>
+        <tr>
+            <td>شدید      </td>
+            <td>21-27        </td>
+            <td>15-19        </td>
+            <td>26-33        </td>
+        </tr>
+        <tr>
+            <td>بسیار شدید      </td>
+            <td>+28        </td>
+            <td>+20        </td>
+            <td>+34        </td>
+        </tr>
+    </table>
+</center>
+<br />
+<footer>
+    طراحی و نگهداری شرکت ابزار دانش غرب @DateTime.Now.Year &copy;
+</footer>

@@ -1,0 +1,88 @@
+﻿﻿@{
+    ViewBag.Title = "آزمون افسردگي، اضطراب، استرس";
+}
+
+<style type="text/css">
+    body {
+        direction: rtl;
+    }
+
+    h2 {
+        text-align: center;
+    }
+
+    td {
+        vertical-align: top;
+        border-style: ridge;
+        font-size: medium;
+        border-color: ActiveBorder;
+        border-width: thin;
+        min-width: 130px;
+    }
+
+    table {
+        text-align: center;
+        margin: 20px;
+    }
+
+    p {
+        font-size: medium;
+    }
+</style>
+<br>
+<h2>@ViewBag.Title</h2><br>
+@model test1.Models.DASSResultModel
+@using (Html.BeginForm("DASSTest", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Name);
+    @Html.HiddenFor(m => m.LastName);
+    @Html.HiddenFor(m => m.StartTime);
+    <p>نام و نام خانوادگی: @Model.Name @Model.LastName</p>
+    <p>
+        خواهشمند است هر یک از جملات زیر را به دقت بخوانید و با علامت انتخاب گزینه مناسب مشخص کنید که هر جمله تا چه اندازه در مورد شما صدق می کند. توجه داشته باشید که جمله درست و غلطی وجود ندارد. وقت زیادی روی هر جمله صرف نکنید.
+    </p>
+
+    <center>
+        <table>
+            <tr>
+                <td>شماره</td>
+                <td>سئوال</td>
+                <td>اصلا</td>
+                <td>كم</td>
+                <td>متوسط</td>
+                <td>زياد</td>
+            </tr>
+            @for (int i = 0; i < Model.DASS.Test_QuestionsNo; i++)
+            {
+                <tr>
+                    <td>
+                        @Html.HiddenFor(m => m.DASS.Test_Questions[i].ID)
+                        @Html.HiddenFor(m => m.DASS.Test_Questions[i].Qu_Row)
+                        @Model.DASS.Test_Questions[i].Qu_Row
+                    </td>
+                    <td style="text-align:right">
+                        @Html.HiddenFor(m => m.DASS.Test_Questions[i].Qu_Text)
+                        @Model.DASS.Test_Questions[i].Qu_Text
+                    </td>
+                    <td>
+                        @Html.RadioButtonFor(m => m.DASS.Test_Questions[i].Qu_Choice, 0)
+                    </td>
+                    <td>
+                        @Html.RadioButtonFor(m => m.DASS.Test_Questions[i].Qu_Choice, 1)
+                    </td>
+                    <td>
+                        @Html.RadioButtonFor(m => m.DASS.Test_Questions[i].Qu_Choice, 2)
+                    </td>
+                    <td>
+                        @Html.RadioButtonFor(m => m.DASS.Test_Questions[i].Qu_Choice, 3)
+                    </td>
+                </tr>
+            }
+        </table>
+    </center>
+    <br />
+    <center>
+        <input type="submit" value="ارسال" class="btn btn-default" />
+    </center>
+}
